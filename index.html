@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVE & GROW | General PJOK</title>
+<style>
+:root{--green:#2f7d5a;--light:#eaf6ef;--dark:#17382d;--muted:#66756e;--bg:#f5faf7;--white:#fff;--line:#dce9e2;--blue:#286b8f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--dark);line-height:1.55}
+header{position:sticky;top:0;z-index:20;background:#fffffff5;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.nav{max-width:1180px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{font-weight:900;font-size:21px}.logo span{color:var(--green)}
+nav{display:flex;gap:4px;flex-wrap:wrap}nav a{padding:8px 10px;border-radius:9px;text-decoration:none;color:var(--dark);font-weight:700;font-size:13px}nav a:hover{background:var(--light);color:var(--green)}
+main{max-width:1180px;margin:auto}.hero{margin:0;padding:55px 18px 30px;background:linear-gradient(135deg,#eaf7ef,#eef8fb);border-radius:0 0 28px 28px}
+.hero h1{font-size:clamp(42px,7vw,70px);line-height:.95;letter-spacing:-3px;margin:10px 0}.hero h1 span{color:var(--green)}.tag{display:inline-block;background:#fff;border:1px solid #d5e8df;color:var(--green);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:900}.lead{font-size:18px;color:#43584f;max-width:760px}
+.section{padding:38px 18px}.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 9px 25px #17382d0c}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+h2{margin:0 0 7px;font-size:29px}h3{margin-top:0}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}
+label{font-weight:800;font-size:13px;display:block;margin-bottom:5px}input,select,textarea{width:100%;border:1px solid #cadbd3;border-radius:10px;padding:11px;font:inherit;background:#fff}textarea{min-height:90px;resize:vertical}.field{margin-bottom:13px}
+button,.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}.primary{background:var(--green);color:#fff}.secondary{background:#fff;color:var(--green);border:1px solid #cfe1d8}.danger{background:#fff0f0;color:#a43f3f;border:1px solid #eccaca}
+.notice{padding:13px 15px;border-radius:12px;background:var(--light);margin:12px 0}.success{background:#e9f7ee}.warning{background:#fff8e8}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.badge{padding:14px;text-align:center;border:1px solid var(--line);border-radius:14px;background:#fff}.badge.locked{opacity:.45;filter:grayscale(1)}
+.progress{height:12px;background:#e4eee9;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--green);width:0;transition:.3s}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{background:#f1f7f4}
+.video-preview{width:100%;max-height:320px;border-radius:14px;background:#15251f;margin-top:10px}.empty{padding:30px;text-align:center;border:2px dashed #cadbd3;border-radius:14px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.stat{font-size:30px;font-weight:900;color:var(--green)}.pill{display:inline-block;padding:5px 9px;background:var(--light);color:var(--green);border-radius:999px;font-size:12px;font-weight:800}
+#toast{position:fixed;right:20px;bottom:20px;background:#17382d;color:#fff;padding:13px 16px;border-radius:12px;display:none;z-index:50;box-shadow:0 8px 25px #0003}
+footer{margin-top:25px;background:#17382d;color:#fff;padding:30px 18px}footer .wrap{max-width:1180px;margin:auto}
+@media(max-width:850px){.grid,.two{grid-template-columns:1fr}.badges{grid-template-columns:1fr 1fr}nav{display:none}}
+@media(max-width:480px){.badges{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="nav">
+<div class="logo">🌱 MOVE <span>& GROW</span></div>
+<nav>
+<a href="#profil">Profil</a><a href="#goal">Target</a><a href="#practice">Praktik</a><a href="#progress">Progress</a><a href="#reflection">Refleksi</a><a href="#mindset">Growth Mindset</a><a href="#achievement">Achievement</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">DIGITAL GROWTH PORTFOLIO • GENERAL PJOK</span>
+<h1>MOVE <span>& GROW</span></h1>
+<p class="lead">Ruang digital siswa untuk menetapkan target, mengunggah bukti praktik, mencatat hasil, melihat perkembangan, melakukan refleksi, dan membangun growth mindset dalam berbagai materi PJOK.</p>
+<div class="notice"><b>🌱 Cara kerja:</b> isi target → lakukan aktivitas → upload video → masukkan hasil → refleksi → lihat progress.</div>
+</section>
+
+<section class="section" id="profil">
+<h2>👤 Profil Siswa</h2><p class="muted">Isi sekali. Data akan tersimpan otomatis di browser perangkat ini.</p>
+<div class="card">
+<div class="two">
+<div class="field"><label>Nama lengkap</label><input id="studentName" placeholder="Nama siswa"></div>
+<div class="field"><label>Kelas</label><input id="studentClass" placeholder="Contoh: XI F2"></div>
+</div>
+<div class="actions"><button class="primary" onclick="saveProfile()">Simpan Profil</button><button class="secondary" onclick="loadDemo()">Isi Contoh Demo</button></div>
+<div id="profileMsg" class="notice" style="display:none"></div>
+</div>
+</section>
+
+<section class="section" id="goal">
+<h2>🎯 My Goal</h2><p class="muted">Tentukan target sesuai materi PJOK yang sedang dipelajari.</p>
+<div class="card">
+<div class="two">
+<div class="field"><label>Materi PJOK</label>
+<select id="subject"><option value="">Pilih materi</option><option>Bola Voli</option><option>Bola Basket</option><option>Sepak Bola</option><option>Atletik</option><option>Senam</option><option>Kebugaran Jasmani</option><option>Bela Diri</option><option>Aktivitas Air</option><option>Permainan Tradisional</option><option>Aktivitas Ritmik</option><option>Lainnya</option></select></div>
+<div class="field"><label>Keterampilan yang dikembangkan</label><input id="skill" placeholder="Contoh: passing bawah / dribbling / daya tahan"></div>
+</div>
+<div class="field"><label>Target pribadi</label><textarea id="target" placeholder="Contoh: Saya ingin meningkatkan ketepatan passing..."></textarea></div>
+<div class="field"><label>Keyakinan mencapai target: <output id="confidenceValue">3</output>/5</label><input id="confidence" type="range" min="1" max="5" value="3" oninput="confidenceValue.value=this.value"></div>
+<button class="primary" onclick="saveGoal()">💾 Simpan Target</button>
+<div id="goalMsg" class="notice" style="display:none"></div>
+</div>
+</section>
+
+<section class="section" id="practice">
+<h2>📹 My Practice</h2><p class="muted">Setiap aktivitas dapat memiliki video dan hasil. Video disimpan di browser perangkat ini untuk prototype siap pakai.</p>
+<div class="card">
+<div class="two">
+<div class="field"><label>Pertemuan ke-</label><input id="meeting" type="number" min="1" value="1"></div>
+<div class="field"><label>Tanggal</label><input id="date" type="date"></div>
+</div>
+<div class="two">
+<div class="field"><label>Indikator yang diukur</label><input id="indicator" placeholder="Contoh: passing berhasil / jarak / waktu / repetisi"></div>
+<div class="field"><label>Nilai hasil</label><input id="resultValue" type="number" step="0.01" placeholder="Contoh: 12"></div>
+</div>
+<div class="field"><label>Satuan hasil</label><input id="unit" placeholder="Contoh: kali, meter, detik, poin, %"></div>
+<div class="field"><label>Video praktik</label><input id="video" type="file" accept="video/*" onchange="previewVideo(event)"></div>
+<video id="videoPreview" class="video-preview" controls style="display:none"></video>
+<div class="field"><label>Catatan latihan</label><textarea id="practiceNote" placeholder="Apa yang kamu latih dan apa yang terjadi?"></textarea></div>
+<button class="primary" onclick="savePractice()">📌 Simpan Praktik</button>
+<div id="practiceMsg" class="notice" style="display:none"></div>
+</div>
+</section>
+
+<section class="section" id="progress">
+<h2>📈 My Progress</h2><p class="muted">Progress dihitung dari data hasil praktik yang kamu masukkan. Jika indikator dan satuannya konsisten, grafik akan menunjukkan perkembangan dari pertemuan ke pertemuan.</p>
+<div class="grid">
+<div class="card"><div class="small">TARGET</div><div class="stat" id="statTarget">—</div><p id="targetText" class="muted">Belum ada target.</p></div>
+<div class="card"><div class="small">PRAKTIK TERSIMPAN</div><div class="stat" id="statPractice">0</div><p class="muted">dokumentasi aktivitas</p></div>
+<div class="card"><div class="small">PERKEMBANGAN TERAKHIR</div><div class="stat" id="statLatest">—</div><p id="latestUnit" class="muted"></p></div>
+</div>
+<div class="card" style="margin-top:16px">
+<h3>Grafik Perkembangan</h3>
+<canvas id="chart" width="1000" height="330" style="width:100%;max-width:100%;border-radius:12px"></canvas>
+<div id="noChart" class="empty">Belum ada data praktik. Isi My Practice terlebih dahulu.</div>
+</div>
+<div class="card" style="margin-top:16px">
+<h3>Riwayat Praktik</h3>
+<div id="history"></div>
+</div>
+</section>
+
+<section class="section" id="reflection">
+<h2>💭 My Reflection</h2><p class="muted">Refleksi membantu melihat proses, bukan hanya hasil.</p>
+<div class="card">
+<div class="field"><label>Pertemuan</label><select id="reflectionMeeting"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+<div class="field"><label>1. Apa yang sudah berhasil saya lakukan?</label><textarea id="r1"></textarea></div>
+<div class="field"><label>2. Apa yang masih menjadi kesulitan saya?</label><textarea id="r2"></textarea></div>
+<div class="field"><label>3. Apa yang saya pelajari dari kesalahan?</label><textarea id="r3"></textarea></div>
+<div class="field"><label>4. Strategi apa yang akan saya coba berikutnya?</label><textarea id="r4"></textarea></div>
+<div class="field"><label>5. Lengkapi: “Saya belum bisa ________, tetapi saya akan ________.”</label><textarea id="r5"></textarea></div>
+<button class="primary" onclick="saveReflection()">💾 Simpan Refleksi</button>
+<div id="reflectionMsg" class="notice" style="display:none"></div>
+</div>
+</section>
+
+<section class="section" id="mindset">
+<h2>🌱 Growth Mindset</h2><p class="muted">Latihan singkat untuk membiasakan pola pikir berkembang.</p>
+<div class="two">
+<div class="card">
+<h3>Challenge</h3><p>Kamu sudah mencoba keterampilan PJOK beberapa kali tetapi masih sering salah. Respons mana yang menunjukkan growth mindset?</p>
+<div class="option" onclick="mindsetAnswer(this,false)">A. Saya memang tidak berbakat.</div>
+<div class="option" onclick="mindsetAnswer(this,false)">B. Saya berhenti saja.</div>
+<div class="option" onclick="mindsetAnswer(this,true)">C. Saya belum menguasainya. Saya akan mencoba strategi lain.</div>
+<div id="mindsetMsg" class="result"></div>
+</div>
+<div class="card">
+<h3>🌱 Growth Statement</h3>
+<p>Tulis kalimatmu sendiri.</p><textarea id="growthStatement" placeholder="Saya belum..., tetapi saya akan..."></textarea>
+<button class="primary" onclick="saveGrowth()">Simpan Pernyataan</button>
+<div id="growthMsg" class="result"></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="achievement">
+<h2>🏆 My Achievement</h2><p class="muted">Badge diperoleh berdasarkan proses dan perkembangan pribadi, bukan ranking.</p>
+<div class="badges">
+<div class="badge locked" id="badge1">🌟<br><b>Brave to Try</b><br><span class="small">1 praktik</span></div>
+<div class="badge locked" id="badge2">🌟<br><b>Never Give Up</b><br><span class="small">2 praktik</span></div>
+<div class="badge locked" id="badge3">🌟<br><b>Feedback Seeker</b><br><span class="small">1 refleksi</span></div>
+<div class="badge locked" id="badge4">🌟<br><b>Progress Maker</b><br><span class="small">2+ data hasil</span></div>
+</div>
+</section>
+
+<section class="section">
+<div class="card">
+<h3>📦 Kelola Data</h3><p class="muted">Data tersimpan di browser. Gunakan ekspor sebagai cadangan atau untuk dipindahkan ke perangkat lain.</p>
+<div class="actions">
+<button class="secondary" onclick="exportData()">⬇️ Export Data</button>
+<label class="btn secondary" style="cursor:pointer">⬆️ Import Data<input type="file" accept=".json" onchange="importData(event)" style="display:none"></label>
+<button class="danger" onclick="resetData()">Hapus Semua Data</button>
+</div>
+<p class="small">Catatan video: file video tersimpan sebagai data lokal browser pada perangkat ini. Untuk penggunaan satu kelas dengan data terpusat, versi implementasi sekolah sebaiknya dihubungkan ke Google Drive/Forms/Sheets.</p>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap"><h2>🌱 MOVE & GROW</h2><p>Digital Growth Portfolio — General PJOK — Seminar PPG</p><p class="small">Dibuat untuk mendukung pembelajaran berbasis proses, refleksi, feedback, dan growth mindset.</p></div></footer>
+<div id="toast"></div>
+
+<script>
+const KEY='moveGrowGeneralPJOK_v2';
+let data={profile:{},goal:{},practices:[],reflections:[],growth:''};
+let currentVideo=null;
+
+function load(){try{let x=JSON.parse(localStorage.getItem(KEY));if(x)data=x}catch(e){};fill();render()}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function saveProfile(){data.profile={name:studentName.value.trim(),className:studentClass.value.trim()};persist();show('profileMsg','Profil tersimpan.');toast('Profil tersimpan')}
+function saveGoal(){data.goal={subject:subject.value,skill:skill.value.trim(),target:target.value.trim(),confidence:confidence.value};persist();show('goalMsg','Target berhasil disimpan.');toast('Target tersimpan')}
+function show(id,msg){let e=document.getElementById(id);e.style.display='block';e.innerHTML=msg}
+function previewVideo(e){let f=e.target.files[0];if(!f)return;currentVideo=f;let u=URL.createObjectURL(f);videoPreview.src=u;videoPreview.style.display='block'}
+function savePractice(){
+ if(!data.profile.name){show('practiceMsg','Isi Profil Siswa terlebih dahulu.');return}
+ if(!subject.value && !data.goal.subject){show('practiceMsg','Pilih materi pada My Goal terlebih dahulu.');return}
+ let f=currentVideo, p={meeting:Number(meeting.value)||1,date:date.value||new Date().toISOString().slice(0,10),indicator:indicator.value.trim(),value:Number(resultValue.value),unit:unit.value.trim(),note:practiceNote.value.trim(),videoName:f?f.name:'',videoType:f?f.type:'',videoSize:f?f.size:0};
+ if(!p.indicator||Number.isNaN(p.value)){show('practiceMsg','Isi indikator dan nilai hasil agar progress dapat dihitung.');return}
+ // Video itself is intentionally not persisted to localStorage because browser storage may be too small.
+ // Keep a local preview until page closes; filename remains in record.
+ data.practices.push(p);persist();currentVideo=null;document.getElementById('video').value='';videoPreview.removeAttribute('src');videoPreview.style.display='none';
+ practiceMsg.style.display='block';practiceMsg.innerHTML='Praktik tersimpan. Video: '+(p.videoName||'tidak ada')+'. Untuk penyimpanan permanen video kelas, hubungkan form ini ke Google Drive.';
+ toast('Praktik tersimpan')
+}
+function saveReflection(){let r={meeting:reflectionMeeting.value,answers:[r1.value,r2.value,r3.value,r4.value,r5.value],date:new Date().toISOString()};if(r.answers.some(x=>!x.trim())){show('reflectionMsg','Lengkapi semua pertanyaan refleksi.');return}data.reflections.push(r);persist();show('reflectionMsg','Refleksi tersimpan.');toast('Refleksi tersimpan')}
+function mindsetAnswer(el,ok){document.querySelectorAll('.option').forEach(x=>x.classList.remove('correct','wrong'));el.classList.add(ok?'correct':'wrong');show('mindsetMsg',ok?'<b>🌱 Benar.</b> Growth mindset melihat kemampuan sebagai sesuatu yang dapat berkembang melalui usaha, strategi, dan feedback.':'Coba pikirkan lagi. Fokus pada proses dan kemungkinan berkembang.')}
+function saveGrowth(){let v=growthStatement.value.trim();if(!v){show('growthMsg','Tulis pernyataan terlebih dahulu.');return}data.growth=v;persist();show('growthMsg','Pernyataan growth mindset tersimpan.');toast('Growth statement tersimpan')}
+function render(){
+ statTarget.textContent=data.goal.confidence?data.goal.confidence+'/5':'—';targetText.textContent=data.goal.subject?(data.goal.subject+' • '+data.goal.skill):'Belum ada target.';
+ statPractice.textContent=data.practices.length;
+ let latest=data.practices[data.practices.length-1];statLatest.textContent=latest?latest.value:'—';latestUnit.textContent=latest?(latest.unit||latest.indicator):'';
+ drawChart();renderHistory();badges()
+}
+function renderHistory(){let h=document.getElementById('history');if(!data.practices.length){h.innerHTML='<div class="empty">Belum ada praktik.</div>';return}
+h.innerHTML='<table><thead><tr><th>Pertemuan</th><th>Tanggal</th><th>Indikator</th><th>Hasil</th><th>Video</th></tr></thead><tbody>'+
+data.practices.map(p=>`<tr><td>${p.meeting}</td><td>${p.date}</td><td>${esc(p.indicator)}</td><td><b>${p.value}</b> ${esc(p.unit)}</td><td>${p.videoName?'📹 '+esc(p.videoName):'—'}</td></tr>`).join('')+'</tbody></table>'}
+function drawChart(){let c=document.getElementById('chart'),ctx=c.getContext('2d'),arr=data.practices;if(!arr.length){c.style.display='none';noChart.style.display='block';return}c.style.display='block';noChart.style.display='none';ctx.clearRect(0,0,c.width,c.height);let W=c.width,H=c.height,pad=55,max=Math.max(...arr.map(x=>x.value),1),min=Math.min(0,...arr.map(x=>x.value));ctx.strokeStyle='#c9d9d2';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad,20);ctx.lineTo(pad,H-pad);ctx.lineTo(W-20,H-pad);ctx.stroke();let pts=arr.map((x,i)=>{let xPos=pad+(W-pad-30)*(i/Math.max(arr.length-1,1));let y=H-pad-(x.value-min)/Math.max(max-min,1)*(H-pad-30);return [xPos,y]});ctx.strokeStyle='#2f7d5a';ctx.lineWidth=5;ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke();ctx.fillStyle='#2f7d5a';ctx.font='bold 15px Arial';pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(p[0],p[1],7,0,Math.PI*2);ctx.fill();ctx.fillText(String(arr[i].value),p[0]-8,p[1]-13);ctx.fillText('P'+arr[i].meeting,p[0]-10,H-20)})}
+function badges(){document.getElementById('badge1').classList.toggle('locked',data.practices.length<1);document.getElementById('badge2').classList.toggle('locked',data.practices.length<2);document.getElementById('badge3').classList.toggle('locked',data.reflections.length<1);document.getElementById('badge4').classList.toggle('locked',data.practices.length<2)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MOVE_AND_GROW_'+(data.profile.name||'siswa')+'.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);persist();toast('Data berhasil diimpor')}catch(x){alert('File data tidak valid.')}};r.readAsText(f)}
+function resetData(){if(confirm('Hapus seluruh data MOVE & GROW pada perangkat ini?')){localStorage.removeItem(KEY);location.reload()}}
+function loadDemo(){data={profile:{name:'Contoh Siswa',className:'XI F2'},goal:{subject:'Bola Voli',skill:'Passing bawah',target:'Meningkatkan ketepatan passing',confidence:4},practices:[{meeting:1,date:new Date().toISOString().slice(0,10),indicator:'Passing berhasil',value:6,unit:'kali',note:'Latihan awal',videoName:'video_pertemuan_1.mp4'},{meeting:2,date:new Date().toISOString().slice(0,10),indicator:'Passing berhasil',value:10,unit:'kali',note:'Mulai lebih terkontrol',videoName:'video_pertemuan_2.mp4'},{meeting:3,date:new Date().toISOString().slice(0,10),indicator:'Passing berhasil',value:13,unit:'kali',note:'Akurasi meningkat',videoName:'video_pertemuan_3.mp4'}],reflections:[{meeting:3,answers:['Posisi tangan lebih baik','Arah bola masih perlu diperbaiki','Kesalahan membantu saya mengetahui bagian yang perlu dilatih','Saya akan berlatih dengan target','Saya belum konsisten, tetapi saya akan terus mencoba'],date:new Date().toISOString()}],growth:'Saya belum konsisten, tetapi saya akan terus berlatih.'};persist();toast('Data contoh dimuat')}
+load();
+date.value=new Date().toISOString().slice(0,10);
+</script>
+</body>
+</html>
