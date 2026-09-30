@@ -676,9 +676,10 @@ MOVE & GROW • PJOK × Growth Mindset
    API GOOGLE APPS SCRIPT
 ========================================= */
 
+<script>
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwYfZzmqfrWrKBzVqD4K7wMEfuLoWGRXsgB2zGBp7fjB0JpCHKn9-vWoKHQb05KAaWN/exec";
-
 
 
 /* =========================================
@@ -687,29 +688,21 @@ const API_URL =
 
 function showPage(page){
 
-  const inputPage =
-    document.getElementById("inputPage");
+  document
+    .getElementById("inputPage")
+    .classList.toggle(
+      "hidden",
+      page !== "input"
+    );
 
-  const dashboardPage =
-    document.getElementById("dashboardPage");
-
-
-  if(page === "input"){
-
-    inputPage.classList.remove("hidden");
-
-    dashboardPage.classList.add("hidden");
-
-  }else{
-
-    inputPage.classList.add("hidden");
-
-    dashboardPage.classList.remove("hidden");
-
-  }
+  document
+    .getElementById("dashboardPage")
+    .classList.toggle(
+      "hidden",
+      page !== "dashboard"
+    );
 
 }
-
 
 
 /* =========================================
@@ -721,36 +714,20 @@ function submitTraining(){
   const status =
     document.getElementById("statusInput");
 
-
   const nama =
-    document
-      .getElementById("nama")
-      .value
-      .trim();
-
+    document.getElementById("nama").value.trim();
 
   const kelas =
-    document
-      .getElementById("kelas")
-      .value;
-
+    document.getElementById("kelas").value;
 
   const materi =
-    document
-      .getElementById("materi")
-      .value;
-
+    document.getElementById("materi").value;
 
   const pertemuan =
-    document
-      .getElementById("pertemuan")
-      .value;
-
+    document.getElementById("pertemuan").value;
 
   const tanggal =
-    document
-      .getElementById("tanggal")
-      .value;
+    document.getElementById("tanggal").value;
 
 
   /* CEK DATA WAJIB */
@@ -773,7 +750,6 @@ function submitTraining(){
       "❌ Lengkapi data wajib terlebih dahulu.";
 
     return;
-
   }
 
 
@@ -787,193 +763,132 @@ function submitTraining(){
     "⏳ Mengirim data ke Google Sheets...";
 
 
-  /* =======================================
-     FORM TERSEMBUNYI
-  ======================================= */
+  /* =====================================
+     FORM POST
+  ===================================== */
 
   const form =
     document.createElement("form");
 
+  form.method = "POST";
 
-  form.method =
-    "POST";
+  form.action = API_URL;
 
+  /*
+   * Untuk tes pertama,
+   * response dibuka di tab baru.
+   */
+  form.target = "_blank";
 
-  form.action =
-    API_URL;
-
-
-  form.target =
-    "moveGrowFrame";
-
-
-  form.style.display =
-    "none";
+  form.style.display = "none";
 
 
-  /* =======================================
-     DATA
-  ======================================= */
+  /* =====================================
+     DATA YANG DIKIRIM
+  ===================================== */
 
   const data = {
 
-    nama:
-      nama,
+    nama: nama,
 
-    kelas:
-      kelas,
+    kelas: kelas,
 
-    materi:
-      materi,
+    materi: materi,
 
-    pertemuan:
-      pertemuan,
+    pertemuan: pertemuan,
 
-    tanggal:
-      tanggal,
+    tanggal: tanggal,
 
     indikator:
-      document
-        .getElementById("indikator")
-        .value,
+      document.getElementById("indikator").value,
 
     hasil:
-      document
-        .getElementById("hasil")
-        .value,
+      document.getElementById("hasil").value,
 
     satuan:
-      document
-        .getElementById("satuan")
-        .value,
+      document.getElementById("satuan").value,
 
     catatan:
-      document
-        .getElementById("catatan")
-        .value,
+      document.getElementById("catatan").value,
 
     berhasil:
-      document
-        .getElementById("berhasil")
-        .value,
+      document.getElementById("berhasil").value,
 
     kesulitan:
-      document
-        .getElementById("kesulitan")
-        .value,
+      document.getElementById("kesulitan").value,
 
     pelajaran:
-      document
-        .getElementById("pelajaran")
-        ?.value || "",
+      document.getElementById("pelajaran")
+      ? document.getElementById("pelajaran").value
+      : "",
 
     target:
-      document
-        .getElementById("target")
-        .value,
+      document.getElementById("target").value,
 
     growth:
-      document
-        .getElementById("growth")
-        .value
+      document.getElementById("growth").value
 
   };
 
 
-  /* =======================================
+  /* =====================================
      MASUKKAN DATA KE FORM
-  ======================================= */
+  ===================================== */
 
-  Object.keys(data).forEach(
-    function(key){
+  Object.keys(data).forEach(function(key){
 
-      const input =
-        document.createElement("input");
+    const input =
+      document.createElement("input");
 
+    input.type = "hidden";
 
-      input.type =
-        "hidden";
+    input.name = key;
 
+    input.value = data[key];
 
-      input.name =
-        key;
+    form.appendChild(input);
 
-
-      input.value =
-        data[key];
-
-
-      form.appendChild(input);
-
-    }
-  );
+  });
 
 
   document.body.appendChild(form);
 
 
-  /* =======================================
+  /* =====================================
      KIRIM
-  ======================================= */
+  ===================================== */
 
   form.submit();
 
 
-  /* =======================================
-     TUNGGU DAN TAMPILKAN STATUS
-  ======================================= */
+  /*
+   * JANGAN langsung dianggap berhasil.
+   *
+   * Kita hanya memberi informasi bahwa
+   * request sudah dikirim.
+   */
 
-  setTimeout(
-    function(){
+  status.className =
+    "status success";
 
-      status.className =
-        "status success";
+  status.style.display =
+    "block";
 
-
-      status.style.display =
-        "block";
-
-
-      status.innerHTML =
-        "✅ Data berhasil dikirim. Silakan cek Google Sheets.";
+  status.innerHTML =
+    "📤 Data sudah dikirim. Cek tab baru dan Google Sheets.";
 
 
-      document
-        .getElementById("trainingForm")
-        .reset();
+  /*
+   * Hapus form setelah dikirim
+   */
 
+  setTimeout(function(){
 
-      form.remove();
+    form.remove();
 
-    },
-    2500
-  );
+  },1000);
 
 }
-
-
-
-/* =========================================
-   IFRAME POST
-========================================= */
-
-const frame =
-  document.createElement("iframe");
-
-
-frame.name =
-  "moveGrowFrame";
-
-
-frame.id =
-  "moveGrowFrame";
-
-
-frame.style.display =
-  "none";
-
-
-document.body.appendChild(frame);
 
 
 
@@ -988,7 +903,6 @@ async function loadProgress(){
       .getElementById("cariNama")
       .value
       .trim();
-
 
   const status =
     document.getElementById(
@@ -1032,6 +946,15 @@ async function loadProgress(){
       );
 
 
+    if(!response.ok){
+
+      throw new Error(
+        "Server tidak merespons dengan benar."
+      );
+
+    }
+
+
     const result =
       await response.json();
 
@@ -1043,7 +966,7 @@ async function loadProgress(){
 
       throw new Error(
         result.message ||
-        "Gagal mengambil data."
+        "Data gagal diambil."
       );
 
     }
@@ -1053,19 +976,16 @@ async function loadProgress(){
       result.data || [];
 
 
-    if(
-      data.length === 0
-    ){
+    if(data.length === 0){
 
       throw new Error(
-        "Data siswa belum ditemukan."
+        "Belum ada data latihan untuk nama tersebut."
       );
 
     }
 
 
     tampilkanProgress(data);
-
 
     status.style.display =
       "none";
@@ -1075,17 +995,15 @@ async function loadProgress(){
 
     console.error(error);
 
-
     status.className =
       "status error";
-
 
     status.style.display =
       "block";
 
-
     status.innerHTML =
-      "❌ Gagal mengambil progres.";
+      "❌ " +
+      error.message;
 
   }
 
@@ -1099,15 +1017,9 @@ async function loadProgress(){
 
 function tampilkanProgress(data){
 
-  const result =
-    document.getElementById(
-      "progressResult"
-    );
-
-
-  result.classList.remove(
-    "hidden"
-  );
+  document
+    .getElementById("progressResult")
+    .classList.remove("hidden");
 
 
   document.getElementById(
@@ -1124,14 +1036,12 @@ function tampilkanProgress(data){
 
 
   const videoCount =
-    data.filter(
-      function(item){
+    data.filter(function(item){
 
-        return item.video &&
-               item.video !== "";
+      return item.video &&
+             item.video !== "";
 
-      }
-    ).length;
+    }).length;
 
 
   document.getElementById(
@@ -1165,144 +1075,128 @@ function tampilkanProgress(data){
     );
 
 
-  container.innerHTML =
-    "";
+  container.innerHTML = "";
 
 
-  data.forEach(
-    function(item,index){
+  data.forEach(function(item,index){
 
-      const card =
-        document.createElement(
-          "div"
-        );
+    const card =
+      document.createElement("div");
 
-
-      card.className =
-        "history";
+    card.className =
+      "history";
 
 
-      let videoHTML =
-        "";
+    let videoHTML = "";
 
 
-      if(item.video){
+    if(item.video){
 
-        videoHTML = `
-
-          <a
-            class="video-link"
-            href="${item.video}"
-            target="_blank"
-          >
-
-            🎥 Lihat Video
-
-          </a>
-
-        `;
-
-      }
-
-
-      card.innerHTML = `
-
-        <h3>
-          Pertemuan
-          ${item.pertemuan || index + 1}
-        </h3>
-
-        <p>
-          <strong>Materi:</strong>
-          ${item.materi || "-"}
-        </p>
-
-        <p>
-          <strong>Hasil:</strong>
-          ${item.hasil || "-"}
-          ${item.satuan || ""}
-        </p>
-
-        <p>
-          <strong>Keterampilan:</strong>
-          ${item.indikator || "-"}
-        </p>
-
-        ${videoHTML}
-
-        <div class="reflection">
-
-          <strong>
-            🌱 Yang sudah berhasil
-          </strong>
-
-          <p>
-            ${item.berhasil || "-"}
-          </p>
-
-        </div>
-
-        <div class="reflection">
-
-          <strong>
-            💭 Kesulitan
-          </strong>
-
-          <p>
-            ${item.kesulitan || "-"}
-          </p>
-
-        </div>
-
-        <div class="reflection">
-
-          <strong>
-            💡 Pembelajaran dari kesalahan
-          </strong>
-
-          <p>
-            ${item.pelajaran || "-"}
-          </p>
-
-        </div>
-
-        <div class="reflection">
-
-          <strong>
-            🎯 Target berikutnya
-          </strong>
-
-          <p>
-            ${item.target || "-"}
-          </p>
-
-        </div>
-
-        <div class="reflection">
-
-          <strong>
-            🧠 Growth Statement
-          </strong>
-
-          <p>
-            ${item.growth || "-"}
-          </p>
-
-        </div>
-
+      videoHTML = `
+        <a
+          class="video-link"
+          href="${item.video}"
+          target="_blank"
+        >
+          🎥 Lihat Video
+        </a>
       `;
 
-
-      container.appendChild(card);
-
     }
-  );
+
+
+    card.innerHTML = `
+
+      <h3>
+        Pertemuan
+        ${item.pertemuan || index + 1}
+      </h3>
+
+      <p>
+        <strong>Materi:</strong>
+        ${item.materi || "-"}
+      </p>
+
+      <p>
+        <strong>Hasil:</strong>
+        ${item.hasil || "-"}
+        ${item.satuan || ""}
+      </p>
+
+      <p>
+        <strong>Keterampilan:</strong>
+        ${item.indikator || "-"}
+      </p>
+
+      ${videoHTML}
+
+      <div class="reflection">
+
+        <strong>
+          🌱 Yang sudah berhasil
+        </strong>
+
+        <p>
+          ${item.berhasil || "-"}
+        </p>
+
+      </div>
+
+      <div class="reflection">
+
+        <strong>
+          💭 Kesulitan
+        </strong>
+
+        <p>
+          ${item.kesulitan || "-"}
+        </p>
+
+      </div>
+
+      <div class="reflection">
+
+        <strong>
+          💡 Pembelajaran dari kesalahan
+        </strong>
+
+        <p>
+          ${item.pelajaran || "-"}
+        </p>
+
+      </div>
+
+      <div class="reflection">
+
+        <strong>
+          🎯 Target berikutnya
+        </strong>
+
+        <p>
+          ${item.target || "-"}
+        </p>
+
+      </div>
+
+      <div class="reflection">
+
+        <strong>
+          🧠 Growth Statement
+        </strong>
+
+        <p>
+          ${item.growth || "-"}
+        </p>
+
+      </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+  });
 
 }
 
-
 </script>
-
-</body>
-
-</html>
