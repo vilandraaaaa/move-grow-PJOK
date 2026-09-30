@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MOVE & GROW | PJOK</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f5f7fb;
+  color:#1f2937;
+}
+
+header{
+  background:linear-gradient(135deg,#111827,#374151);
+  color:white;
+  padding:35px 20px;
+  text-align:center;
+}
+
+header h1{
+  font-size:36px;
+  letter-spacing:2px;
+}
+
+header p{
+  margin-top:8px;
+  opacity:.85;
+}
+
+nav{
+  background:white;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:12px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+nav button{
+  border:none;
+  background:#eef2f7;
+  padding:11px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+nav button:hover{
+  background:#dbe4ef;
+}
+
+.container{
+  max-width:1050px;
+  margin:30px auto;
+  padding:0 18px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:22px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
+
+.card h2{
+  margin-bottom:18px;
+}
+
+label{
+  display:block;
+  margin-top:15px;
+  margin-bottom:7px;
+  font-weight:bold;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:15px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+button.primary{
+  width:100%;
+  margin-top:22px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button.primary:hover{
+  opacity:.9;
+}
+
+.hidden{
+  display:none;
+}
+
+.status{
+  padding:14px;
+  border-radius:10px;
+  margin-top:15px;
+  display:none;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.dashboard-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+
+.stat{
+  background:#f3f4f6;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:30px;
+  margin-bottom:5px;
+}
+
+.progress{
+  width:100%;
+  height:14px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#111827;
+  transition:.5s;
+}
+
+.history{
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:18px;
+  margin-top:15px;
+}
+
+.history h3{
+  margin-bottom:8px;
+}
+
+.video-link{
+  display:inline-block;
+  margin-top:10px;
+  padding:9px 13px;
+  background:#111827;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+}
+
+.reflection{
+  background:#f9fafb;
+  padding:15px;
+  border-radius:12px;
+  margin-top:12px;
+}
+
+.reflection strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#6b7280;
+}
+
+@media(max-width:700px){
+
+  header h1{
+    font-size:28px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  nav{
+    flex-wrap:wrap;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>MOVE & GROW</h1>
+  <p>PJOK × Growth Mindset</p>
+  <p>Bergerak • Berproses • Bertumbuh</p>
+</header>
+
+<nav>
+  <button onclick="showPage('input')">
+    📝 Isi Latihan
+  </button>
+
+  <button onclick="showPage('dashboard')">
+    📊 Progres Saya
+  </button>
+</nav>
+
+
+<div class="container">
+
+<!-- ================================================= -->
+<!-- FORM INPUT -->
+<!-- ================================================= -->
+
+<section id="inputPage">
+
+<div class="card">
+
+<h2>📝 Catatan Latihan PJOK</h2>
+
+<form id="trainingForm">
+
+<label>Nama Lengkap</label>
+<input
+  type="text"
+  id="nama"
+  placeholder="Masukkan nama lengkap"
+  required
+>
+
+<label>Kelas</label>
+<select id="kelas" required>
+  <option value="">Pilih kelas</option>
+  <option>XI F1</option>
+  <option>XI F2</option>
+  <option>XI F3</option>
+  <option>XI F4</option>
+  <option>X F1</option>
+  <option>X F2</option>
+  <option>X F3</option>
+  <option>XII F1</option>
+  <option>XII F2</option>
+</select>
+
+<label>Materi PJOK</label>
+<select id="materi" required>
+  <option value="">Pilih materi</option>
+  <option>Kebugaran Jasmani</option>
+  <option>Permainan Bola Besar</option>
+  <option>Permainan Bola Kecil</option>
+  <option>Atletik</option>
+  <option>Senam</option>
+  <option>Aktivitas Ritmik</option>
+  <option>Aktivitas Air</option>
+  <option>Pencak Silat</option>
+  <option>Lainnya</option>
+</select>
+
+<label>Pertemuan ke-</label>
+<input
+  type="number"
+  id="pertemuan"
+  min="1"
+  placeholder="Contoh: 1"
+  required
+>
+
+<label>Tanggal Praktik</label>
+<input
+  type="date"
+  id="tanggal"
+  required
+>
+
+<label>Indikator / Keterampilan yang Dilatih</label>
+<textarea
+  id="indikator"
+  placeholder="Contoh: melakukan passing bawah dengan teknik yang benar"
+></textarea>
+
+<label>Hasil Latihan</label>
+<input
+  type="text"
+  id="hasil"
+  placeholder="Contoh: 20 repetisi"
+>
+
+<label>Satuan</label>
+<input
+  type="text"
+  id="satuan"
+  placeholder="Contoh: repetisi / detik / meter"
+>
+
+<label>📹 Upload Video Latihan</label>
+<input
+  type="file"
+  id="video"
+  accept="video/*"
+>
+
+<small>
+  Disarankan menggunakan video pendek agar proses upload lebih cepat.
+</small>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- GROWTH MINDSET -->
+<!-- ================================================= -->
+
+<div class="card">
+
+<h2>🧠 Refleksi Growth Mindset</h2>
+
+<label>
+Apa yang sudah berhasil saya lakukan?
+</label>
+
+<textarea
+  id="berhasil"
+  placeholder="Ceritakan perkembanganmu..."
+></textarea>
+
+
+<label>
+Kesulitan yang saya alami?
+</label>
+
+<textarea
+  id="kesulitan"
+  placeholder="Apa yang masih terasa sulit?"
+></textarea>
+
+
+<label>
+Apa yang saya pelajari dari kesalahan tersebut?
+</label>
+
+<textarea
+  id="pelajaran"
+  placeholder="Apa yang kamu pelajari?"
+></textarea>
+
+
+<label>
+Target saya pada latihan berikutnya?
+</label>
+
+<textarea
+  id="target"
+  placeholder="Apa targetmu berikutnya?"
+></textarea>
+
+
+<label>
+Growth Statement
+</label>
+
+<select id="growth">
+  <option value="">
+    Pilih pernyataan
+  </option>
+
+  <option>
+    Saya belum bisa, tetapi saya akan terus berlatih.
+  </option>
+
+  <option>
+    Kesalahan membantu saya belajar.
+  </option>
+
+  <option>
+    Saya bisa berkembang melalui latihan.
+  </option>
+
+  <option>
+    Saya akan mencoba strategi yang berbeda.
+  </option>
+
+  <option>
+    Saya bangga dengan proses perkembangan saya.
+  </option>
+</select>
+
+
+<label>
+Catatan Latihan
+</label>
+
+<textarea
+  id="catatan"
+  placeholder="Tambahkan catatan lain..."
+></textarea>
+
+
+<button
+  type="button"
+  class="primary"
+  onclick="submitTraining()"
+>
+  🚀 SIMPAN PROGRES
+</button>
+
+<div
+  id="statusInput"
+  class="status"
+></div>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- DASHBOARD -->
+<!-- ================================================= -->
+
+<section
+  id="dashboardPage"
+  class="hidden"
+>
+
+<div class="card">
+
+<div class="dashboard-head">
+
+<div>
+<h2>📊 Progres Saya</h2>
+<p>
+Masukkan nama untuk melihat riwayat latihan.
+</p>
+</div>
+
+</div>
+
+
+<label>Nama Lengkap</label>
+
+<input
+  type="text"
+  id="cariNama"
+  placeholder="Masukkan nama yang digunakan saat latihan"
+>
+
+<button
+  class="primary"
+  onclick="loadProgress()"
+>
+  🔎 LIHAT PROGRES
+</button>
+
+<div
+  id="statusDashboard"
+  class="status"
+></div>
+
+</div>
+
+
+<div
+  id="progressResult"
+  class="hidden"
+>
+
+<div class="card">
+
+<h2 id="studentName">
+  Progres Siswa
+</h2>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="totalLatihan">0</strong>
+Latihan
+</div>
+
+<div class="stat">
+<strong id="totalVideo">0</strong>
+Video
+</div>
+
+<div class="stat">
+<strong id="progressPercent">0%</strong>
+Progress
+</div>
+
+</div>
+
+
+<h3 style="margin-top:25px">
+Progress Latihan
+</h3>
+
+<div class="progress">
+<div
+  id="progressBar"
+  class="progress-bar"
+></div>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📚 Riwayat Latihan</h2>
+
+<div id="historyContainer"></div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<footer>
+  MOVE & GROW • PJOK × Growth Mindset
+</footer>
+
+
+<script>
+
+/* =================================================
+   KONFIGURASI API
+================================================= */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzUXY2bEkz0usWfUV4QC-j_4RiYP6OMDHp6QkFFA72RCzvn6Qh5jJIbqCYK5FjAWg6V/exec";
+
+
+/* =================================================
+   NAVIGASI
+================================================= */
+
+function showPage(page){
+
+  const input =
+    document.getElementById("inputPage");
+
+  const dashboard =
+    document.getElementById("dashboardPage");
+
+  if(page === "input"){
+
+    input.classList.remove("hidden");
+    dashboard.classList.add("hidden");
+
+  }else{
+
+    input.classList.add("hidden");
+    dashboard.classList.remove("hidden");
+
+  }
+
+}
+
+
+/* =================================================
+   UPLOAD VIDEO + DATA
+================================================= */
+
+async function submitTraining(){
+
+  const status =
+    document.getElementById(
+      "statusInput"
+    );
+
+  status.style.display = "block";
+
+  status.className =
+    "status";
+
+  status.innerHTML =
+    "⏳ Menyimpan progres...";
+
+
+  try{
+
+    const file =
+      document.getElementById(
+        "video"
+      ).files[0];
+
+
+    let videoBase64 = "";
+
+
+    /* =============================================
+       BACA VIDEO
+    ============================================= */
+
+    if(file){
+
+      // Batas 30 MB
+      if(
+        file.size >
+        30 * 1024 * 1024
+      ){
+
+        throw new Error(
+          "Ukuran video terlalu besar. Maksimal 30 MB."
+        );
+
+      }
+
+
+      videoBase64 =
+        await fileToBase64(file);
+
+    }
+
+
+    /* =============================================
+       DATA
+    ============================================= */
+
+    const data = {
+
+      nama:
+        document.getElementById(
+          "nama"
+        ).value,
+
+      kelas:
+        document.getElementById(
+          "kelas"
+        ).value,
+
+      materi:
+        document.getElementById(
+          "materi"
+        ).value,
+
+      pertemuan:
+        document.getElementById(
+          "pertemuan"
+        ).value,
+
+      tanggal:
+        document.getElementById(
+          "tanggal"
+        ).value,
+
+      indikator:
+        document.getElementById(
+          "indikator"
+        ).value,
+
+      hasil:
+        document.getElementById(
+          "hasil"
+        ).value,
+
+      satuan:
+        document.getElementById(
+          "satuan"
+        ).value,
+
+      catatan:
+        document.getElementById(
+          "catatan"
+        ).value,
+
+      berhasil:
+        document.getElementById(
+          "berhasil"
+        ).value,
+
+      kesulitan:
+        document.getElementById(
+          "kesulitan"
+        ).value,
+
+      pelajaran:
+        document.getElementById(
+          "pelajaran"
+        )?.value || "",
+
+      target:
+        document.getElementById(
+          "target"
+        ).value,
+
+      growth:
+        document.getElementById(
+          "growth"
+        ).value,
+
+      videoBase64:
+        videoBase64,
+
+      videoName:
+        file ? file.name : "",
+
+      videoType:
+        file ? file.type : ""
+
+    };
+
+
+    /* =============================================
+       KIRIM KE APPS SCRIPT
+    ============================================= */
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+
+          method:
+            "POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify(data)
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(
+      result.status !==
+      "success"
+    ){
+
+      throw new Error(
+        result.message ||
+        "Gagal menyimpan data."
+      );
+
+    }
+
+
+    /* =============================================
+       BERHASIL
+    ============================================= */
+
+    status.className =
+      "status success";
+
+    status.style.display =
+      "block";
+
+    status.innerHTML =
+      "✅ Progres berhasil disimpan!";
+
+
+    document
+      .getElementById(
+        "trainingForm"
+      )
+      .reset();
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    status.className =
+      "status error";
+
+    status.style.display =
+      "block";
+
+    status.innerHTML =
+      "❌ " +
+      error.message;
+
+  }
+
+}
+
+
+/* =================================================
+   FILE → BASE64
+================================================= */
+
+function fileToBase64(file){
+
+  return new Promise(
+    (resolve,reject)=>{
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(){
+
+          const result =
+            reader.result;
+
+
+          const base64 =
+            result.split(",")[1];
+
+
+          resolve(base64);
+
+        };
+
+
+      reader.onerror =
+        function(){
+
+          reject(
+            new Error(
+              "Video gagal dibaca."
+            )
+          );
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+}
+
+
+/* =================================================
+   AMBIL PROGRES
+================================================= */
+
+async function loadProgress(){
+
+  const nama =
+    document
+      .getElementById(
+        "cariNama"
+      )
+      .value
+      .trim();
+
+
+  const status =
+    document.getElementById(
+      "statusDashboard"
+    );
+
+
+  if(!nama){
+
+    status.className =
+      "status error";
+
+    status.style.display =
+      "block";
+
+    status.innerHTML =
+      "❌ Masukkan nama terlebih dahulu.";
+
+    return;
+
+  }
+
+
+  status.className =
+    "status";
+
+  status.style.display =
+    "block";
+
+  status.innerHTML =
+    "⏳ Mengambil progres...";
+
+
+  try{
+
+    const response =
+      await fetch(
+        API_URL +
+        "?nama=" +
+        encodeURIComponent(nama)
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(
+      result.status !==
+      "success"
+    ){
+
+      throw new Error(
+        result.message ||
+        "Gagal mengambil data."
+      );
+
+    }
+
+
+    const data =
+      result.data || [];
+
+
+    if(
+      data.length === 0
+    ){
+
+      throw new Error(
+        "Data siswa belum ditemukan."
+      );
+
+    }
+
+
+    tampilkanProgress(
+      data
+    );
+
+
+    status.style.display =
+      "none";
+
+
+  }catch(error){
+
+    status.className =
+      "status error";
+
+    status.style.display =
+      "block";
+
+    status.innerHTML =
+      "❌ " +
+      error.message;
+
+  }
+
+}
+
+
+/* =================================================
+   TAMPILKAN PROGRES
+================================================= */
+
+function tampilkanProgress(data){
+
+  const result =
+    document.getElementById(
+      "progressResult"
+    );
+
+
+  result.classList.remove(
+    "hidden"
+  );
+
+
+  const nama =
+    data[0].nama;
+
+
+  document.getElementById(
+    "studentName"
+  ).innerHTML =
+    "📊 Progres " +
+    nama;
+
+
+  document.getElementById(
+    "totalLatihan"
+  ).innerText =
+    data.length;
+
+
+  const videoCount =
+    data.filter(
+      item =>
+        item.video &&
+        item.video !== ""
+    ).length;
+
+
+  document.getElementById(
+    "totalVideo"
+  ).innerText =
+    videoCount;
+
+
+  /* =============================================
+     PROGRESS
+  ============================================= */
+
+  const progress =
+    Math.min(
+      100,
+      data.length * 10
+    );
+
+
+  document.getElementById(
+    "progressPercent"
+  ).innerText =
+    progress + "%";
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    progress + "%";
+
+
+  /* =============================================
+     RIWAYAT
+  ============================================= */
+
+  const container =
+    document.getElementById(
+      "historyContainer"
+    );
+
+
+  container.innerHTML = "";
+
+
+  data.forEach(
+    function(item,index){
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "history";
+
+
+      let videoHTML = "";
+
+
+      if(item.video){
+
+        videoHTML =
+          `
+          <a
+            class="video-link"
+            href="${item.video}"
+            target="_blank"
+          >
+            🎥 Lihat Video
+          </a>
+          `;
+
+      }
+
+
+      card.innerHTML = `
+
+        <h3>
+          Pertemuan ${item.pertemuan || (index+1)}
+        </h3>
+
+        <p>
+          <strong>Materi:</strong>
+          ${item.materi || "-"}
+        </p>
+
+        <p>
+          <strong>Hasil:</strong>
+          ${item.hasil || "-"}
+          ${item.satuan || ""}
+        </p>
+
+        <p>
+          <strong>Keterampilan:</strong>
+          ${item.indikator || "-"}
+        </p>
+
+        ${videoHTML}
+
+        <div class="reflection">
+
+          <strong>
+            🌱 Yang sudah berhasil
+          </strong>
+
+          <p>
+            ${item.berhasil || "-"}
+          </p>
+
+        </div>
+
+        <div class="reflection">
+
+          <strong>
+            💭 Kesulitan
+          </strong>
+
+          <p>
+            ${item.kesulitan || "-"}
+          </p>
+
+        </div>
+
+        <div class="reflection">
+
+          <strong>
+            💡 Pembelajaran dari kesalahan
+          </strong>
+
+          <p>
+            ${item.pelajaran || "-"}
+          </p>
+
+        </div>
+
+        <div class="reflection">
+
+          <strong>
+            🎯 Target berikutnya
+          </strong>
+
+          <p>
+            ${item.target || "-"}
+          </p>
+
+        </div>
+
+        <div class="reflection">
+
+          <strong>
+            🧠 Growth Statement
+          </strong>
+
+          <p>
+            ${item.growth || "-"}
+          </p>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+</script>
+
+</body>
+</html>
