@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>MOVE & GROW | PJOK</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -19,7 +14,7 @@
 }
 
 body{
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:#f5f7fb;
   color:#1f2937;
 }
@@ -60,10 +55,6 @@ nav button{
   border-radius:10px;
   cursor:pointer;
   font-weight:bold;
-}
-
-nav button:hover{
-  background:#dbe4ef;
 }
 
 .container{
@@ -119,12 +110,8 @@ button.primary{
   cursor:pointer;
 }
 
-button.primary:hover{
-  opacity:.9;
-}
-
 .hidden{
-  display:none;
+  display:none !important;
 }
 
 .status{
@@ -142,14 +129,6 @@ button.primary:hover{
 .error{
   background:#fee2e2;
   color:#991b1b;
-}
-
-.dashboard-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
 }
 
 .stats{
@@ -185,7 +164,6 @@ button.primary:hover{
   height:100%;
   width:0%;
   background:#111827;
-  transition:.5s;
 }
 
 .history{
@@ -197,16 +175,6 @@ button.primary:hover{
 
 .history h3{
   margin-bottom:8px;
-}
-
-.video-link{
-  display:inline-block;
-  margin-top:10px;
-  padding:9px 13px;
-  background:#111827;
-  color:white;
-  border-radius:8px;
-  text-decoration:none;
 }
 
 .reflection{
@@ -240,50 +208,33 @@ footer{
   nav{
     flex-wrap:wrap;
   }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
-
-<h1>MOVE & GROW</h1>
-
-<p>PJOK × Growth Mindset</p>
-
-<p>Bergerak • Berproses • Bertumbuh</p>
-
+  <h1>MOVE & GROW</h1>
+  <p>PJOK × Growth Mindset</p>
+  <p>Bergerak • Berproses • Bertumbuh</p>
 </header>
 
-
 <nav>
+  <button onclick="showPage('input')">
+    📝 Isi Latihan
+  </button>
 
-<button onclick="showPage('input')">
-📝 Isi Latihan
-</button>
-
-<button onclick="showPage('dashboard')">
-📊 Progres Saya
-</button>
-
+  <button onclick="showPage('dashboard')">
+    📊 Progres Saya
+  </button>
 </nav>
-
 
 <div class="container">
 
-
-<!-- =========================================
-     HALAMAN INPUT
-========================================= -->
+<!-- ================= INPUT ================= -->
 
 <section id="inputPage">
-
 
 <div class="card">
 
@@ -291,218 +242,121 @@ footer{
 
 <form id="trainingForm">
 
-
 <label>Nama Lengkap</label>
-
 <input
   type="text"
   id="nama"
-  placeholder="Masukkan nama lengkap"
   required
+  placeholder="Masukkan nama lengkap"
 >
 
-
 <label>Kelas</label>
-
 <select id="kelas" required>
-
-<option value="">
-Pilih kelas
-</option>
-
-<option>XI F1</option>
-<option>XI F2</option>
-<option>XI F3</option>
-<option>XI F4</option>
-
-<option>X F1</option>
-<option>X F2</option>
-<option>X F3</option>
-
-<option>XII F1</option>
-<option>XII F2</option>
-
+  <option value="">Pilih kelas</option>
+  <option>XI F1</option>
+  <option>XI F2</option>
+  <option>XI F3</option>
+  <option>XI F4</option>
+  <option>X F1</option>
+  <option>X F2</option>
+  <option>X F3</option>
+  <option>XII F1</option>
+  <option>XII F2</option>
 </select>
-
 
 <label>Materi PJOK</label>
-
 <select id="materi" required>
-
-<option value="">
-Pilih materi
-</option>
-
-<option>Kebugaran Jasmani</option>
-<option>Permainan Bola Besar</option>
-<option>Permainan Bola Kecil</option>
-<option>Atletik</option>
-<option>Senam</option>
-<option>Aktivitas Ritmik</option>
-<option>Aktivitas Air</option>
-<option>Pencak Silat</option>
-<option>Lainnya</option>
-
+  <option value="">Pilih materi</option>
+  <option>Kebugaran Jasmani</option>
+  <option>Permainan Bola Besar</option>
+  <option>Permainan Bola Kecil</option>
+  <option>Atletik</option>
+  <option>Senam</option>
+  <option>Aktivitas Ritmik</option>
+  <option>Aktivitas Air</option>
+  <option>Pencak Silat</option>
+  <option>Lainnya</option>
 </select>
 
-
 <label>Pertemuan ke-</label>
-
 <input
   type="number"
   id="pertemuan"
   min="1"
-  placeholder="Contoh: 1"
   required
+  placeholder="Contoh: 1"
 >
 
-
 <label>Tanggal Praktik</label>
-
 <input
   type="date"
   id="tanggal"
   required
 >
 
-
-<label>
-Indikator / Keterampilan yang Dilatih
-</label>
-
+<label>Indikator / Keterampilan yang Dilatih</label>
 <textarea
   id="indikator"
   placeholder="Contoh: melakukan passing bawah dengan teknik yang benar"
 ></textarea>
 
-
 <label>Hasil Latihan</label>
-
 <input
   type="text"
   id="hasil"
-  placeholder="Contoh: 20 repetisi"
+  placeholder="Contoh: 20"
 >
 
-
 <label>Satuan</label>
-
 <input
   type="text"
   id="satuan"
   placeholder="Contoh: repetisi / detik / meter"
 >
 
+<label>Catatan Latihan</label>
+<textarea
+  id="catatan"
+  placeholder="Tambahkan catatan latihan..."
+></textarea>
 
 </div>
 
-
-<!-- =========================================
-     GROWTH MINDSET
-========================================= -->
 
 <div class="card">
 
 <h2>🧠 Refleksi Growth Mindset</h2>
 
+<label>Apa yang sudah berhasil saya lakukan?</label>
+<textarea id="berhasil"></textarea>
 
-<label>
-Apa yang sudah berhasil saya lakukan?
-</label>
+<label>Kesulitan yang saya alami?</label>
+<textarea id="kesulitan"></textarea>
 
-<textarea
-  id="berhasil"
-  placeholder="Ceritakan perkembanganmu..."
-></textarea>
+<label>Apa yang saya pelajari dari kesalahan tersebut?</label>
+<textarea id="pelajaran"></textarea>
 
+<label>Target saya pada latihan berikutnya?</label>
+<textarea id="target"></textarea>
 
-<label>
-Kesulitan yang saya alami?
-</label>
-
-<textarea
-  id="kesulitan"
-  placeholder="Apa yang masih terasa sulit?"
-></textarea>
-
-
-<label>
-Apa yang saya pelajari dari kesalahan tersebut?
-</label>
-
-<textarea
-  id="pelajaran"
-  placeholder="Apa yang kamu pelajari?"
-></textarea>
-
-
-<label>
-Target saya pada latihan berikutnya?
-</label>
-
-<textarea
-  id="target"
-  placeholder="Apa targetmu berikutnya?"
-></textarea>
-
-
-<label>
-Growth Statement
-</label>
-
+<label>Growth Statement</label>
 <select id="growth">
-
-<option value="">
-Pilih pernyataan
-</option>
-
-<option>
-Saya belum bisa, tetapi saya akan terus berlatih.
-</option>
-
-<option>
-Kesalahan membantu saya belajar.
-</option>
-
-<option>
-Saya bisa berkembang melalui latihan.
-</option>
-
-<option>
-Saya akan mencoba strategi yang berbeda.
-</option>
-
-<option>
-Saya bangga dengan proses perkembangan saya.
-</option>
-
+  <option value="">Pilih pernyataan</option>
+  <option>Saya belum bisa, tetapi saya akan terus berlatih.</option>
+  <option>Kesalahan membantu saya belajar.</option>
+  <option>Saya bisa berkembang melalui latihan.</option>
+  <option>Saya akan mencoba strategi yang berbeda.</option>
+  <option>Saya bangga dengan proses perkembangan saya.</option>
 </select>
 
-
-<label>
-Catatan Latihan
-</label>
-
-<textarea
-  id="catatan"
-  placeholder="Tambahkan catatan lain..."
-></textarea>
-
-
 <button
-  type="button"
+  type="submit"
   class="primary"
-  onclick="submitTraining()"
 >
 🚀 SIMPAN PROGRES
 </button>
 
-
-<div
-  id="statusInput"
-  class="status"
-></div>
-
+<div id="statusInput" class="status"></div>
 
 </form>
 
@@ -511,45 +365,23 @@ Catatan Latihan
 </section>
 
 
+<!-- ================= DASHBOARD ================= -->
 
-<!-- =========================================
-     DASHBOARD
-========================================= -->
-
-<section
-  id="dashboardPage"
-  class="hidden"
->
-
+<section id="dashboardPage" class="hidden">
 
 <div class="card">
 
-
-<div class="dashboard-head">
-
-<div>
-
 <h2>📊 Progres Saya</h2>
 
-<p>
-Masukkan nama untuk melihat riwayat latihan.
-</p>
+<p>Masukkan nama untuk melihat riwayat latihan.</p>
 
-</div>
-
-</div>
-
-
-<label>
-Nama Lengkap
-</label>
+<label>Nama Lengkap</label>
 
 <input
   type="text"
   id="cariNama"
-  placeholder="Masukkan nama yang digunakan saat latihan"
+  placeholder="Nama yang digunakan saat latihan"
 >
-
 
 <button
   class="primary"
@@ -558,80 +390,45 @@ Nama Lengkap
 🔎 LIHAT PROGRES
 </button>
 
-
-<div
-  id="statusDashboard"
-  class="status"
-></div>
-
+<div id="statusDashboard" class="status"></div>
 
 </div>
 
 
-<div
-  id="progressResult"
-  class="hidden"
->
-
+<div id="progressResult" class="hidden">
 
 <div class="card">
 
-<h2 id="studentName">
-Progres Siswa
-</h2>
-
+<h2 id="studentName">Progres Siswa</h2>
 
 <div class="stats">
 
-
 <div class="stat">
-
-<strong id="totalLatihan">
-0
-</strong>
-
+<strong id="totalLatihan">0</strong>
 Latihan
-
 </div>
 
-
 <div class="stat">
-
-<strong id="totalVideo">
-0
-</strong>
-
+<strong id="totalVideo">0</strong>
 Video
-
 </div>
-
 
 <div class="stat">
-
-<strong id="progressPercent">
-0%
-</strong>
-
+<strong id="progressPercent">0%</strong>
 Progress
-
 </div>
 
-
 </div>
-
 
 <h3 style="margin-top:25px">
 Progress Latihan
 </h3>
 
-
 <div class="progress">
-
 <div
   id="progressBar"
   class="progress-bar"
 ></div>
-
 </div>
 
 </div>
@@ -639,16 +436,11 @@ Progress Latihan
 
 <div class="card">
 
-<h2>
-📚 Riwayat Latihan
-</h2>
+<h2>📚 Riwayat Latihan</h2>
 
-<div
-  id="historyContainer"
-></div>
+<div id="historyContainer"></div>
 
 </div>
-
 
 </div>
 
@@ -656,25 +448,12 @@ Progress Latihan
 
 </div>
 
-
 <footer>
-
 MOVE & GROW • PJOK × Growth Mindset
-
 </footer>
 
 
-
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
-
-<script>
-
-
-/* =========================================
-   API GOOGLE APPS SCRIPT
-========================================= */
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
@@ -682,219 +461,178 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbwYfZzmqfrWrKBzVqD4K7wMEfuLoWGRXsgB2zGBp7fjB0JpCHKn9-vWoKHQb05KAaWN/exec";
 
 
-/* =========================================
+/* =========================
    NAVIGASI
-========================================= */
+========================= */
 
 function showPage(page){
 
-  document
-    .getElementById("inputPage")
-    .classList.toggle(
-      "hidden",
-      page !== "input"
-    );
+  const input =
+    document.getElementById("inputPage");
 
-  document
-    .getElementById("dashboardPage")
-    .classList.toggle(
-      "hidden",
-      page !== "dashboard"
-    );
+  const dashboard =
+    document.getElementById("dashboardPage");
 
-}
+  if(page === "input"){
 
+    input.classList.remove("hidden");
+    dashboard.classList.add("hidden");
 
-/* =========================================
-   SIMPAN PROGRES
-========================================= */
+  }else{
 
-function submitTraining(){
+    input.classList.add("hidden");
+    dashboard.classList.remove("hidden");
 
-  const status =
-    document.getElementById("statusInput");
-
-  const nama =
-    document.getElementById("nama").value.trim();
-
-  const kelas =
-    document.getElementById("kelas").value;
-
-  const materi =
-    document.getElementById("materi").value;
-
-  const pertemuan =
-    document.getElementById("pertemuan").value;
-
-  const tanggal =
-    document.getElementById("tanggal").value;
-
-
-  /* CEK DATA WAJIB */
-
-  if(
-    !nama ||
-    !kelas ||
-    !materi ||
-    !pertemuan ||
-    !tanggal
-  ){
-
-    status.className =
-      "status error";
-
-    status.style.display =
-      "block";
-
-    status.innerHTML =
-      "❌ Lengkapi data wajib terlebih dahulu.";
-
-    return;
   }
-
-
-  status.className =
-    "status";
-
-  status.style.display =
-    "block";
-
-  status.innerHTML =
-    "⏳ Mengirim data ke Google Sheets...";
-
-
-  /* =====================================
-     FORM POST
-  ===================================== */
-
-  const form =
-    document.createElement("form");
-
-  form.method = "POST";
-
-  form.action = API_URL;
-
-  /*
-   * Untuk tes pertama,
-   * response dibuka di tab baru.
-   */
-  form.target = "_blank";
-
-  form.style.display = "none";
-
-
-  /* =====================================
-     DATA YANG DIKIRIM
-  ===================================== */
-
-  const data = {
-
-    nama: nama,
-
-    kelas: kelas,
-
-    materi: materi,
-
-    pertemuan: pertemuan,
-
-    tanggal: tanggal,
-
-    indikator:
-      document.getElementById("indikator").value,
-
-    hasil:
-      document.getElementById("hasil").value,
-
-    satuan:
-      document.getElementById("satuan").value,
-
-    catatan:
-      document.getElementById("catatan").value,
-
-    berhasil:
-      document.getElementById("berhasil").value,
-
-    kesulitan:
-      document.getElementById("kesulitan").value,
-
-    pelajaran:
-      document.getElementById("pelajaran")
-      ? document.getElementById("pelajaran").value
-      : "",
-
-    target:
-      document.getElementById("target").value,
-
-    growth:
-      document.getElementById("growth").value
-
-  };
-
-
-  /* =====================================
-     MASUKKAN DATA KE FORM
-  ===================================== */
-
-  Object.keys(data).forEach(function(key){
-
-    const input =
-      document.createElement("input");
-
-    input.type = "hidden";
-
-    input.name = key;
-
-    input.value = data[key];
-
-    form.appendChild(input);
-
-  });
-
-
-  document.body.appendChild(form);
-
-
-  /* =====================================
-     KIRIM
-  ===================================== */
-
-  form.submit();
-
-
-  /*
-   * JANGAN langsung dianggap berhasil.
-   *
-   * Kita hanya memberi informasi bahwa
-   * request sudah dikirim.
-   */
-
-  status.className =
-    "status success";
-
-  status.style.display =
-    "block";
-
-  status.innerHTML =
-    "📤 Data sudah dikirim. Cek tab baru dan Google Sheets.";
-
-
-  /*
-   * Hapus form setelah dikirim
-   */
-
-  setTimeout(function(){
-
-    form.remove();
-
-  },1000);
-
 }
 
 
+/* =========================
+   SIMPAN DATA
+========================= */
 
-/* =========================================
+document
+  .getElementById("trainingForm")
+  .addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const status =
+      document.getElementById("statusInput");
+
+    status.className = "status";
+    status.style.display = "block";
+    status.innerHTML =
+      "⏳ Mengirim data ke Google Sheets...";
+
+
+    const form =
+      document.createElement("form");
+
+    form.method = "POST";
+
+    form.action = API_URL;
+
+    form.target = "moveGrowPostFrame";
+
+    form.style.display = "none";
+
+
+    const data = {
+
+      nama:
+        document.getElementById("nama").value.trim(),
+
+      kelas:
+        document.getElementById("kelas").value,
+
+      materi:
+        document.getElementById("materi").value,
+
+      pertemuan:
+        document.getElementById("pertemuan").value,
+
+      tanggal:
+        document.getElementById("tanggal").value,
+
+      indikator:
+        document.getElementById("indikator").value,
+
+      hasil:
+        document.getElementById("hasil").value,
+
+      satuan:
+        document.getElementById("satuan").value,
+
+      catatan:
+        document.getElementById("catatan").value,
+
+      berhasil:
+        document.getElementById("berhasil").value,
+
+      kesulitan:
+        document.getElementById("kesulitan").value,
+
+      pelajaran:
+        document.getElementById("pelajaran")
+        ? document.getElementById("pelajaran").value
+        : "",
+
+      target:
+        document.getElementById("target").value,
+
+      growth:
+        document.getElementById("growth").value
+    };
+
+
+    Object.keys(data).forEach(function(key){
+
+      const input =
+        document.createElement("input");
+
+      input.type = "hidden";
+      input.name = key;
+      input.value = data[key];
+
+      form.appendChild(input);
+
+    });
+
+
+    document.body.appendChild(form);
+
+
+    form.submit();
+
+
+    /*
+      Jangan langsung menganggap
+      gagal/sukses dari response iframe.
+      Tunggu Apps Script menyelesaikan proses.
+    */
+
+    setTimeout(function(){
+
+      status.className =
+        "status success";
+
+      status.style.display =
+        "block";
+
+      status.innerHTML =
+        "✅ Data sudah dikirim. Silakan cek Google Sheets.";
+
+      document
+        .getElementById("trainingForm")
+        .reset();
+
+      form.remove();
+
+    },3000);
+
+});
+
+
+/* =========================
+   IFRAME POST
+========================= */
+
+const postFrame =
+  document.createElement("iframe");
+
+postFrame.name =
+  "moveGrowPostFrame";
+
+postFrame.style.display =
+  "none";
+
+document.body.appendChild(postFrame);
+
+
+/* =========================
    AMBIL PROGRES
-========================================= */
+========================= */
 
 async function loadProgress(){
 
@@ -905,9 +643,7 @@ async function loadProgress(){
       .trim();
 
   const status =
-    document.getElementById(
-      "statusDashboard"
-    );
+    document.getElementById("statusDashboard");
 
 
   if(!nama){
@@ -922,7 +658,6 @@ async function loadProgress(){
       "❌ Masukkan nama terlebih dahulu.";
 
     return;
-
   }
 
 
@@ -938,18 +673,22 @@ async function loadProgress(){
 
   try{
 
+    const url =
+      API_URL +
+      "?nama=" +
+      encodeURIComponent(nama) +
+      "&t=" +
+      Date.now();
+
+
     const response =
-      await fetch(
-        API_URL +
-        "?nama=" +
-        encodeURIComponent(nama)
-      );
+      await fetch(url);
 
 
     if(!response.ok){
 
       throw new Error(
-        "Server tidak merespons dengan benar."
+        "Server tidak dapat diakses."
       );
 
     }
@@ -959,33 +698,26 @@ async function loadProgress(){
       await response.json();
 
 
-    if(
-      result.status !==
-      "success"
-    ){
+    if(result.status !== "success"){
 
       throw new Error(
         result.message ||
-        "Data gagal diambil."
+        "Data tidak dapat diambil."
       );
 
     }
 
 
-    const data =
-      result.data || [];
-
-
-    if(data.length === 0){
+    if(!result.data || result.data.length === 0){
 
       throw new Error(
-        "Belum ada data latihan untuk nama tersebut."
+        "Data siswa belum ditemukan."
       );
 
     }
 
 
-    tampilkanProgress(data);
+    tampilkanProgress(result.data);
 
     status.style.display =
       "none";
@@ -1002,18 +734,16 @@ async function loadProgress(){
       "block";
 
     status.innerHTML =
-      "❌ " +
-      error.message;
+      "❌ " + error.message;
 
   }
 
 }
 
 
-
-/* =========================================
+/* =========================
    TAMPILKAN PROGRES
-========================================= */
+========================= */
 
 function tampilkanProgress(data){
 
@@ -1022,16 +752,15 @@ function tampilkanProgress(data){
     .classList.remove("hidden");
 
 
-  document.getElementById(
-    "studentName"
-  ).innerText =
-    "📊 Progres " +
-    data[0].nama;
+  document
+    .getElementById("studentName")
+    .innerText =
+    "📊 Progres " + data[0].nama;
 
 
-  document.getElementById(
-    "totalLatihan"
-  ).innerText =
+  document
+    .getElementById("totalLatihan")
+    .innerText =
     data.length;
 
 
@@ -1044,9 +773,9 @@ function tampilkanProgress(data){
     }).length;
 
 
-  document.getElementById(
-    "totalVideo"
-  ).innerText =
+  document
+    .getElementById("totalVideo")
+    .innerText =
     videoCount;
 
 
@@ -1057,15 +786,15 @@ function tampilkanProgress(data){
     );
 
 
-  document.getElementById(
-    "progressPercent"
-  ).innerText =
+  document
+    .getElementById("progressPercent")
+    .innerText =
     progress + "%";
 
 
-  document.getElementById(
-    "progressBar"
-  ).style.width =
+  document
+    .getElementById("progressBar")
+    .style.width =
     progress + "%";
 
 
@@ -1085,24 +814,6 @@ function tampilkanProgress(data){
 
     card.className =
       "history";
-
-
-    let videoHTML = "";
-
-
-    if(item.video){
-
-      videoHTML = `
-        <a
-          class="video-link"
-          href="${item.video}"
-          target="_blank"
-        >
-          🎥 Lihat Video
-        </a>
-      `;
-
-    }
 
 
     card.innerHTML = `
@@ -1128,66 +839,34 @@ function tampilkanProgress(data){
         ${item.indikator || "-"}
       </p>
 
-      ${videoHTML}
-
       <div class="reflection">
-
-        <strong>
-          🌱 Yang sudah berhasil
-        </strong>
-
-        <p>
-          ${item.berhasil || "-"}
-        </p>
-
+        <strong>🌱 Yang sudah berhasil</strong>
+        <p>${item.berhasil || "-"}</p>
       </div>
 
       <div class="reflection">
-
-        <strong>
-          💭 Kesulitan
-        </strong>
-
-        <p>
-          ${item.kesulitan || "-"}
-        </p>
-
+        <strong>💭 Kesulitan</strong>
+        <p>${item.kesulitan || "-"}</p>
       </div>
 
       <div class="reflection">
-
-        <strong>
-          💡 Pembelajaran dari kesalahan
-        </strong>
-
-        <p>
-          ${item.pelajaran || "-"}
-        </p>
-
+        <strong>💡 Pembelajaran dari kesalahan</strong>
+        <p>${item.pelajaran || "-"}</p>
       </div>
 
       <div class="reflection">
-
-        <strong>
-          🎯 Target berikutnya
-        </strong>
-
-        <p>
-          ${item.target || "-"}
-        </p>
-
+        <strong>🎯 Target berikutnya</strong>
+        <p>${item.target || "-"}</p>
       </div>
 
       <div class="reflection">
+        <strong>🧠 Growth Statement</strong>
+        <p>${item.growth || "-"}</p>
+      </div>
 
-        <strong>
-          🧠 Growth Statement
-        </strong>
-
-        <p>
-          ${item.growth || "-"}
-        </p>
-
+      <div class="reflection">
+        <strong>📝 Catatan</strong>
+        <p>${item.catatan || "-"}</p>
       </div>
 
     `;
@@ -1200,3 +879,6 @@ function tampilkanProgress(data){
 }
 
 </script>
+
+</body>
+</html>
