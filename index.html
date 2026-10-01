@@ -634,7 +634,7 @@ document.body.appendChild(postFrame);
    AMBIL PROGRES
 ========================= */
 
-async function loadProgress(){
+function loadProgress(){
 
   const nama =
     document
@@ -643,7 +643,9 @@ async function loadProgress(){
       .trim();
 
   const status =
-    document.getElementById("statusDashboard");
+    document.getElementById(
+      "statusDashboard"
+    );
 
 
   if(!nama){
@@ -658,6 +660,7 @@ async function loadProgress(){
       "❌ Masukkan nama terlebih dahulu.";
 
     return;
+
   }
 
 
@@ -671,75 +674,157 @@ async function loadProgress(){
     "⏳ Mengambil progres...";
 
 
-  try{
+  /*
+   * Buat nama callback unik
+   */
 
-    const url =
-      API_URL +
-      "?nama=" +
-      encodeURIComponent(nama) +
-      "&t=" +
-      Date.now();
-
-
-    const response =
-      await fetch(url);
+  const callbackName =
+    "moveGrowCallback_" +
+    Date.now();
 
 
-    if(!response.ok){
+  /*
+   * Buat fungsi callback
+   */
 
-      throw new Error(
-        "Server tidak dapat diakses."
-      );
+  window[callbackName] =
+    function(result){
 
-    }
+      try {
 
+        if(
+          !result ||
+          result.status !== "success"
+        ){
 
-    const result =
-      await response.json();
+          throw new Error(
+            result &&
+            result.message
+              ? result.message
+              : "Data tidak dapat diambil."
+          );
 
-
-    if(result.status !== "success"){
-
-      throw new Error(
-        result.message ||
-        "Data tidak dapat diambil."
-      );
-
-    }
-
-
-    if(!result.data || result.data.length === 0){
-
-      throw new Error(
-        "Data siswa belum ditemukan."
-      );
-
-    }
+        }
 
 
-    tampilkanProgress(result.data);
+        if(
+          !result.data ||
+          result.data.length === 0
+        ){
 
-    status.style.display =
-      "none";
+          throw new Error(
+            "Data siswa belum ditemukan."
+          );
+
+        }
 
 
-  }catch(error){
+        /*
+         * Tampilkan data
+         */
 
-    console.error(error);
+        tampilkanProgress(
+          result.data
+        );
 
-    status.className =
-      "status error";
 
-    status.style.display =
-      "block";
+        status.style.display =
+          "none";
 
-    status.innerHTML =
-      "❌ " + error.message;
 
-  }
+      } catch(error){
+
+        console.error(error);
+
+
+        status.className =
+          "status error";
+
+        status.style.display =
+          "block";
+
+        status.innerHTML =
+          "❌ " +
+          error.message;
+
+      }
+
+
+      /*
+       * Hapus callback
+       */
+
+      delete window[callbackName];
+
+    };
+
+
+  /*
+   * Buat script request
+   */
+
+  const script =
+    document.createElement("script");
+
+
+  script.src =
+    API_URL +
+    "?nama=" +
+    encodeURIComponent(nama) +
+    "&callback=" +
+    callbackName +
+    "&t=" +
+    Date.now();
+
+
+  /*
+   * Jika gagal terhubung
+   */
+
+  script.onerror =
+    function(){
+
+      status.className =
+        "status error";
+
+      status.style.display =
+        "block";
+
+      status.innerHTML =
+        "❌ Gagal mengambil progres.";
+
+      delete window[callbackName];
+
+      script.remove();
+
+    };
+
+
+  document
+    .body
+    .appendChild(script);
+
+
+  /*
+   * Bersihkan script setelah selesai
+   */
+
+  setTimeout(
+    function(){
+
+      if(
+        document.body.contains(script)
+      ){
+
+        script.remove();
+
+      }
+
+    },
+    10000
+  );
 
 }
-
 
 /* =========================
    TAMPILKAN PROGRES
